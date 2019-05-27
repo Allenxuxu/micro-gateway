@@ -13,3 +13,9 @@ clean:
 .PHONY: test
 test:
 	go test -v ./... -cover
+
+.PHONY: docker
+docker:
+	CGO_ENABLED=0 GOOS=linux go build -o micro-gateway main.go
+	docker build . -t xuxu123/micro-gateway:latest
+	rm micro-gateway
